@@ -13,7 +13,7 @@ function HomePage() {
       </Head>
       <main className={styles.main}>
         <h3 className={styles.title}>
-          Welcome to the Internet Computer starter template
+          Open Edge
         </h3>
         <Greeting />
       </main>

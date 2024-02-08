@@ -30,3 +30,8 @@ Clone the repository:
 
 ```bash
 git clone https://github.com/TechieTeee/Open_Edge.git
+
+`cd OpenEdge`
+
+`cargo run`
+

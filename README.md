@@ -24,7 +24,7 @@ The primary goal of Open Edge is to empower developers with tools to leverage IC
 - Rust installed
 - .env
 
-### Setup
+### Setup and Running the Code
 
 Clone the repository:
 

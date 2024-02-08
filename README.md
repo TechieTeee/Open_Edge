@@ -1,3 +1,5 @@
+![edge-computing-hero](https://github.com/TechieTeee/Open_Edge/assets/100870737/bcb54afa-d7fd-4c89-a2af-92b771691539)
+
 # Open Edge
 
 ## Introduction

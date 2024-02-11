@@ -1,6 +1,5 @@
 use candid::{CandidType, Result};
 use ic_cdk::storage;
-
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
@@ -25,11 +24,11 @@ impl IdentityMap {
     }
 
     fn load() -> Self {
-        let data: Option<HashMap<u64, Identity>> = storage::stable_restore(IDENTITIES_KEY);
+        let data: Option<HashMap<u64, Identity>> = storage::stable_restore();
         data.map_or_else(|| IdentityMap::new(), IdentityMap)
     }
 
-    fn update_identity(&mut self, id: u64, updated_identity: Identity) -> Result<(), String> {
+    fn update_identity(&mut self, id: u64, updated_identity: Identity) -> Result {
         if let Some(existing_identity) = self.0.get_mut(&id) {
             // Update the fields of existing_identity with updated_identity
             *existing_identity = updated_identity;
@@ -42,10 +41,12 @@ impl IdentityMap {
 }
 
 #[export_name = "canister_update register_identity"]
-fn register_identity(identity: Identity) -> Result<(), String> {
-    let caller = ic_cdk::caller();
+fn register_identity(identity: Identity) -> Result {
+
+    let _caller = ic_cdk::caller();
     let mut identities = IdentityMap::load();
 
+    // Process and save the identity data
     identities.save();
     Ok(())
 }
@@ -58,16 +59,15 @@ fn get_identity(id: u64) -> Option<Identity> {
 }
 
 #[export_name = "canister_update update_identity"]
-fn update_identity(id: u64, updated_identity: Identity) -> Result<(), String> {
+fn update_identity(id: u64, updated_identity: Identity) -> Result {
     let mut identities = IdentityMap::load();
-    identities.update_identity(id, updated_identity)
+    // Handle the result of the update operation
+    identities.update_identity(id, updated_identity)?;
+    Ok(())
 }
 
 #[export_name = "canister_update delete_identity"]
-fn delete_identity(id: u64) -> Result<(), String> {
-    let mut identities = IdentityMap::load();
+fn delete_identity(id: u64) -> Result {
 
-
-    identities.save();
     Ok(())
 }

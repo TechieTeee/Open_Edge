@@ -1,4 +1,5 @@
 use candid::{CandidType, Result};
+use candid::utils::ArgumentDecoder;
 use ic_cdk::storage;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
@@ -9,6 +10,8 @@ const IDENTITIES_KEY: &str = "identities";
 struct Identity {
     name: String,
     age: u32,
+    licenseID: String,
+    verifiedCerts: String,
 }
 
 #[derive(CandidType, Deserialize, Serialize, Default, Clone)]
@@ -40,9 +43,19 @@ impl IdentityMap {
     }
 }
 
+impl<'de> ArgumentDecoder<'de> for Option<HashMap<u64, Identity>> {
+    fn decode(value: &'de dyn candid::CandidType) -> Result<Self> {
+        if let Some(data) = value.as_any().downcast_ref::<Option<HashMap<u64, Identity>>>() {
+            Ok(data.clone())
+        } else {
+            Err("Failed to decode Option<HashMap<u64, Identity>>".to_string())
+        }
+    }
+}
+
+
 #[export_name = "canister_update register_identity"]
 fn register_identity(identity: Identity) -> Result {
-
     let _caller = ic_cdk::caller();
     let mut identities = IdentityMap::load();
 
@@ -54,7 +67,6 @@ fn register_identity(identity: Identity) -> Result {
 #[export_name = "canister_query get_identity"]
 fn get_identity(id: u64) -> Option<Identity> {
     let identities = IdentityMap::load();
-
     identities.0.get(&id).cloned()
 }
 
@@ -68,6 +80,5 @@ fn update_identity(id: u64, updated_identity: Identity) -> Result {
 
 #[export_name = "canister_update delete_identity"]
 fn delete_identity(id: u64) -> Result {
-
     Ok(())
 }

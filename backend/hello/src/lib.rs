@@ -5,13 +5,13 @@ use std::collections::HashMap;
 
 const IDENTITIES_KEY: &str = "identities";
 
-#[derive(CandidType, Deserialize, Serialize, Default)]
+#[derive(CandidType, Deserialize, Serialize, Default, Clone)]
 struct Identity {
     name: String,
     age: u32,
 }
 
-#[derive(CandidType, Deserialize, Serialize, Default)]
+#[derive(CandidType, Deserialize, Serialize, Default, Clone)]
 struct IdentityMap(HashMap<u64, Identity>);
 
 impl IdentityMap {
@@ -24,7 +24,7 @@ impl IdentityMap {
     }
 
     fn load() -> Self {
-        let data: Option<HashMap<u64, Identity>> = storage::stable_restore();
+        let data: Option<HashMap<u64, Identity>> = storage::stable_restore().expect("Failed to restore data");
         data.map_or_else(|| IdentityMap::new(), IdentityMap)
     }
 
@@ -35,7 +35,7 @@ impl IdentityMap {
             self.save();
             Ok(())
         } else {
-            Err("Identity not found".to_string())
+            Err(candid::Error::Subtype("Identity not found".to_string()))
         }
     }
 }

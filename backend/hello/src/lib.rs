@@ -1,72 +1,65 @@
-use candid::{CandidType, Deserialize, Principal};
-use ic_cdk::api::{caller, id};
-use ic_cdk::storage;
-use serde::{Deserialize, Serialize};
-use std::collections::HashMap;
+use candid::{CandidType, Deserialize, Principal, Result};
+use ic_cdk::{export::Principal, storage, IDLArgs};
 
-#[derive(CandidType, Deserialize, Serialize)]
-struct Identity {
-    pub owner: Principal,
-}
+use serde::{Deserialize as SDeserialize, Serialize};
+use std::collections::HashMap;
 
 const IDENTITIES_KEY: &str = "identities";
 
-#[update]
-fn register_identity() {
-    let caller = caller();
-    let id = id().into();
-    let new_identity = Identity {
-        owner: caller,
-    };
-
-    let mut identities: HashMap<u64, Identity> = match storage::get(IDENTITIES_KEY) {
-        Some(data) => serde_cbor::from_slice(&data).map_err(|e| e.to_string())?,
-        None => HashMap::new(),
-    };
-
-    identities.insert(id, new_identity);
-    storage::put(IDENTITIES_KEY, &serde_cbor::to_vec(&identities).map_err(|e| e.to_string())?);
+#[derive(CandidType, SDeserialize, Serialize)]
+struct Identity {
 }
 
-#[update]
-fn update_identity() {
-    let caller = caller();
-    let id = id().into();
+#[derive(CandidType, SDeserialize, Serialize)]
+struct IdentityMap(HashMap<u64, Identity>);
 
-    let mut identities: HashMap<u64, Identity> = match storage::get(IDENTITIES_KEY) {
-        Some(data) => serde_cbor::from_slice(&data).map_err(|e| e.to_string())?,
-        None => return,
-    };
-
-    if let Some(identity) = identities.get_mut(&id) {
-        identity.owner = caller;
+impl IdentityMap {
+    fn new() -> Self {
+        IdentityMap(HashMap::new())
     }
 
-    storage::put(IDENTITIES_KEY, &serde_cbor::to_vec(&identities).map_err(|e| e.to_string())?);
+    fn save(&self) {
+        storage::write(IDENTITIES_KEY, self);
+    }
+
+    fn load() -> Self {
+        storage::read().unwrap_or_else(|_| IdentityMap::new())
+    }
 }
 
-#[query]
-fn get_identity(id: u64) -> Result<Option<Identity>, String> {
-    let identities: HashMap<u64, Identity> = match storage::get(IDENTITIES_KEY) {
-        Some(data) => serde_cbor::from_slice(&data).map_err(|e| e.to_string())?,
-        None => return Ok(None),
-    };
+#[export_name = "canister_update register_identity"]
+fn register_identity() -> Result<(), String> {
+    let caller = Principal::from(*ic_cdk::caller());
+    let mut identities = IdentityMap::load();
 
-    Ok(identities.get(&id).cloned())
+
+    identities.save();
+    Ok(())
 }
 
-#[update]
-fn delete_identity(id: u64) {
-    let mut identities: HashMap<u64, Identity> = match storage::get(IDENTITIES_KEY) {
-        Some(data) => serde_cbor::from_slice(&data).map_err(|e| e.to_string())?,
-        None => return,
-    };
+#[export_name = "canister_query get_identity"]
+fn get_identity(id: u64) -> Option<Identity> {
+    let identities = IdentityMap::load();
 
-    identities.remove(&id);
 
-    storage::put(IDENTITIES_KEY, &serde_cbor::to_vec(&identities).map_err(|e| e.to_string())?);
+    identities.0.get(&id).cloned()
 }
 
-#[cfg(test)]
-mod tests {
+#[export_name = "canister_update update_identity"]
+fn update_identity() -> Result<(), String> {
+    let caller = Principal::from(*ic_cdk::caller());
+    let mut identities = IdentityMap::load();
+
+
+    identities.save();
+    Ok(())
+}
+
+#[export_name = "canister_update delete_identity"]
+fn delete_identity(id: u64) -> Result<(), String> {
+    let mut identities = IdentityMap::load();
+
+
+    identities.save();
+    Ok(())
 }

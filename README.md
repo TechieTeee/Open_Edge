@@ -25,7 +25,7 @@ The primary goal of Open Edge is to empower developers with tools to leverage IC
 - Rust installed
 - .env
 
-### Setup and Running the Code
+### Setup and Running the Code (Best in Gitpod Virtual Environment)
 
 Clone the repository:
 
@@ -33,6 +33,6 @@ Clone the repository:
 git clone https://github.com/TechieTeee/Open_Edge.git
 
 cd Open_Edge
-
-cargo run
+yarn install && yarn run build && cargo build
+yarn run start && cargo watch -x run
 

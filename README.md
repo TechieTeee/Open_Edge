@@ -10,6 +10,15 @@ Open Edge is an innovative Rust-based project that integrates the Internet Compu
 
 The primary goal of Open Edge is to empower developers with tools to leverage ICP and Zenoh for edge computing applications.
 
+## Why Open Edge Matters
+
+In an era where timely and secure credential approvals are paramount, Open Edge emerges as a game-changer. This project holds the potential to expedite the approval process for critical personnel, such as doctors and firefighters, by leveraging the efficiency of edge computing. Imagine a world where credentials can be verified and approved in near real-time, significantly enhancing the responsiveness and effectiveness of essential services.
+
+## Project Significance
+
+The fusion of Rust, ICP, and Zenoh in Open Edge serves a crucial purpose – to empower developers with robust tools for building advanced edge computing applications. As the project focuses on decentralizing credential management, it paves the way for more secure, transparent, and scalable solutions.
+
+
 ## Tech Stack
 
 

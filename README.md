@@ -8,7 +8,8 @@ Open Edge is a Rust-based project integrating ICP (Internet Computer Protocol) a
 
 ## Purpose
 
-The primary goal of Open Edge is to empower developers with tools to leverage ICP and Zenoh for edge computing applications. Open Edge focuses on decentralized credentials
+The primary goal of Open Edge is to empower developers with tools to leverage ICP and Zenoh for edge computing applications.
+
 ## Tech Stack
 
 

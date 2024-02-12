@@ -1,4 +1,5 @@
 // pages/DemoPage.tsx
+
 import Head from 'next/head';
 import { useDropzone } from 'react-dropzone';
 import styles from 'styles/Home.module.css';
@@ -40,9 +41,9 @@ function DemoPage() {
             Welcome to the Open Edge Demo page! This is where you can explore the features and capabilities of Open Edge.
           </p>
           {/* Upload Widget with Drop Area */}
-          <div className="mt-4" {...getRootProps()} style={{ backgroundImage: `url('/Open_Edge_Drop_Zone_Image.png')`, backgroundSize: 'contain', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', minHeight: '400px' }}>
+          <div className="mt-4 relative" {...getRootProps()} style={{ backgroundImage: `url('/Open_Edge_Drop_Zone_Image.png')`, backgroundSize: 'contain', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', minHeight: '400px' }}>
             <input {...getInputProps()} />
-            <div className="border-2 border-dashed p-8 rounded-lg text-center">
+            <div className="absolute bottom-0 left-0 right-0 text-center mb-4">
               <p className="text-gray-500">Drag 'n' drop files here, or click to select files</p>
               <ul>
                 {acceptedFiles.map((file) => (

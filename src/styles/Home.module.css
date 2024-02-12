@@ -1,6 +1,14 @@
+/* styles/Home.module.css */
+
+/* Add Righteous font import */
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
 .container {
     min-height: 100vh;
     padding: 0 0.5rem;
+    background-color: black; /* Set the background color to black */
+    color: white; /* Set the text color to white */
+    font-family: 'Righteous', sans-serif; /* Use the Righteous font */
 }
 
 .main {

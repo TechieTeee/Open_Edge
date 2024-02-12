@@ -32,7 +32,7 @@ function HomePage() {
         {/* Hero Image */}
         <div className="mb-8">
           <img
-            src="/Open_Edge_Logo.png" // Path to your new image
+            src="/Open_Edge_Logo.png"
             alt="Open Edge Hero Image"
             className="w-full h-auto"
           />
@@ -40,8 +40,8 @@ function HomePage() {
 
         {/* Problem Statement, How Open Edge Solves the Problem, Key Features, Use Cases */}
         <section className="mb-8">
-          <h2 className="text-3xl font-bold mb-4">Problem Statement</h2>
-          <p>The dynamic growth of the cloud computing and big data industry, anticipated to reach a valuation between $308.26 billion and $349.56 billion by 2024, brings forth a set of intricate challenges. As organizations grapple with the unprecedented scale of data, issues such as scalability, security, and data governance emerge. Balancing the need for scalable infrastructure with cost optimization, addressing the complexities of data management, and navigating regulatory landscapes require innovative solutions. Furthermore, a shortage of skilled professionals and interoperability challenges add layers of complexity. Overcoming these challenges is pivotal for organizations to harness the full potential of cloud computing and big data, fostering a future where data-driven decision-making is not only powerful but also secure and efficient.</p>
+          <h2 className="text-3xl font-bold mb-4">Problem</h2>
+          <p>$349.56 billion is the current, estimated size of the cloud computing and big data industry, and it's rapidly growing annually. With this growth, it brings forth a set of intricate challenges. As organizations grapple with the unprecedented scale of data, issues such as scalability, security, and data governance emerge. Balancing the need for scalable infrastructure with cost optimization, addressing the complexities of data management, and navigating regulatory landscapes require innovative solutions. Furthermore, a shortage of skilled professionals and interoperability challenges add layers of complexity. Overcoming these challenges is pivotal for organizations to harness the full potential of cloud computing and big data, fostering a future where data-driven decision-making is not only powerful but also secure and efficient.</p>
         </section>
 
         <section className="mb-8">

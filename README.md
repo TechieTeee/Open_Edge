@@ -11,7 +11,7 @@ Open Edge is an innovative Rust-based project that integrates the Internet Compu
 The primary goal of Open Edge is to empower developers with tools to leverage ICP and Zenoh for edge computing applications.
 
 ## Why Open Edge Matters
-![pexels-dimitri-baret-13347785](https://github.com/TechieTeee/Open_Edge/assets/100870737/8cd03e22-9bfd-4264-9faf-24cc5ee35080)
+<img src="https://github.com/TechieTeee/Open_Edge/assets/100870737/8cd03e22-9bfd-4264-9faf-24cc5ee35080" alt="pexels-dimitri-baret-13347785" width="30%">
 
 In an era where timely and secure credential approvals are paramount, Open Edge emerges as a game-changer. This project holds the potential to expedite the approval process for critical personnel, such as doctors and firefighters, by leveraging the efficiency of edge computing. Imagine a world where credentials can be verified and approved in near real-time, significantly enhancing the responsiveness and effectiveness of essential services. This is just one example of how Open Edge can be leveraged. It has the potential to postively impact a wide range of industries and also be extending to improve other realms of data sharing beyond computing.
 
@@ -43,7 +43,7 @@ https://www.loom.com/share/7cf0ea9b6a724edeab27e744d7f35135?sid=5a73624b-6bdf-45
 - Rust installed
 - .env
 
-### Setup and Running the Code (Best in Gitpod Virtual Environment)
+### Setup and Running the Canister (Best in Gitpod Virtual Environment)
 
 Clone the repository:
 

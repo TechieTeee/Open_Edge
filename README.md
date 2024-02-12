@@ -4,7 +4,7 @@
 
 ## Introduction
 
-Open Edge is a Rust-based project integrating ICP (Internet Computer Protocol) and Zenoh middleware for edge computing. It aims to provide a way to integrate decentralized credital managment with edge computing and blockchain technology - specifcially ICP in Rust.
+Open Edge is a Rust-based project integrating ICP (Internet Computer Protocol) and Zenoh middleware for edge computing. It aims to provide a way to integrate decentralized credential management with edge computing and blockchain technology - specifically ICP in Rust.
 
 ## Purpose
 

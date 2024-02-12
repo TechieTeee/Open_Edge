@@ -1,17 +1,30 @@
 // pages/index.tsx
 
-import Head from "next/head";
-import styles from "styles/Home.module.css";
+import Head from 'next/head';
+import styles from 'styles/Home.module.css';
+import { useRouter } from 'next/router';
 
 function HomePage() {
+  const router = useRouter();
+
+  const handleSignInClick = () => {
+    // Navigate to the Sign In page or use the appropriate route
+    router.push('/signin');
+  };
+
   return (
     <div className={styles.container}>
       {/* Header */}
       <header className={styles.header}>
-        <nav className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center py-4">
           <div className="text-2xl font-bold text-blue-500">Open Edge</div>
-          <button className="text-blue-500 hover:underline rounded-full py-2 px-4 bg-blue-100">Sign In</button>
-        </nav>
+          <button
+            onClick={handleSignInClick}
+            className="text-blue-500 hover:underline rounded-full py-2 px-4 bg-blue-100"
+          >
+            Sign In
+          </button>
+        </div>
       </header>
 
       {/* Main Content */}
@@ -19,7 +32,7 @@ function HomePage() {
         {/* Hero Image */}
         <div className="mb-8">
           <img
-            src="/Open_Edge_Logo.png"
+            src="/Open_Edge_Logo.png" // Path to your new image
             alt="Open Edge Hero Image"
             className="w-full h-auto"
           />
@@ -64,6 +77,20 @@ function HomePage() {
             <li>Secure and Transparent Supply Chain Management Quality Management</li>
             <li>Efficient and Trustworthy Data Sharing in Healthcare (EHR, Credentials, etc)</li>
           </ul>
+        </section>
+
+        {/* Try It Out */}
+        <section className="mb-8">
+          <h2 className="text-3xl font-bold mb-4">Try It Out</h2>
+          <p>
+            Experience the power of Open Edge firsthand. Click the button below to try our demo.
+          </p>
+          <button
+            onClick={() => router.push('/DemoPage')}
+            className="bg-blue-500 text-white px-4 py-2 rounded-full mt-4 inline-block"
+          >
+            Demo
+          </button>
         </section>
       </main>
 
